@@ -45,7 +45,7 @@ ATTESTATION: Cryptographic Action Receipts
 | Execution | [aeib](https://github.com/smaos-ai/aeib) | Reference benchmark — Tests fail-closed precedence and UNKNOWN-state handling | `docker compose run --rm benchmark` |
 | Attestation | [star-protocol](https://github.com/smaos-ai/star-protocol) | Local AST Merkle DAG receipt generator | `npx @smaos/star verify` |
 
-> The reference benchmark is configured to run without network access and does not require cloud services. Container uses `network_mode: none`.
+> The reference benchmark is configured to run without network access and does not require cloud services. Container execution uses `network_mode: none`; the reference benchmark does not require prompts, source code, or cloud services. This describes the reference configuration, not every possible host, plugin, or developer invocation.
 
 ## 3-Tier Hierarchy
 
@@ -53,16 +53,21 @@ ATTESTATION: Cryptographic Action Receipts
 
 **Tier 2 — Verification:** [star-protocol](https://github.com/smaos-ai/star-protocol), smaos-verify (WASM verifier), ghost-audit (local sandbox scanner)
 
-**Tier 3 — Enterprise:** SMAOS Core — evidence and tabletop tooling relevant to DORA Articles 28/30 and EU AI Act Articles 12/14; commercial SOW, not a compliance certification. Includes bitemporal agentacct.db ledger.
+**Tier 3 — Enterprise:** SMAOS Core — evidence and tabletop tooling relevant to DORA Articles 28/30 and EU AI Act Articles 12/14; commercial SOW, not a compliance certification. Planned or commercial component: bitemporal agentacct.db ledger.
 
-**What is signed:** JCS canonical SHA-256 of receipt (action_id, payload_digest, disposition, observed_at), Merkle root in manifest.json  
-**Key supply:** Local Ed25519 keypair, stored locally, never transmitted  
-**Authenticates:** Integrity of local receipt file  
-**Does NOT prove:** External ledger settled, source data complete, DORA compliance, or production security  
+**What is signed:** JCS-canonical receipt data is hashed with SHA-256; the resulting digest and Merkle root are included in the signed manifest.json.  
+**Key supply:** A locally generated Ed25519 keypair is stored locally and is not transmitted by the reference tool.  
+**Authenticates:** Integrity and provenance of the local receipt package relative to the signing key.  
+**Does not prove:** External-ledger settlement, source-data completeness, DORA compliance, human authorization, or production security.  
 
 ## Engagement & Verification
 
-- **Run Benchmark:** `git clone --branch v0.1.0 https://github.com/smaos-ai/aeib.git && docker compose run --rm benchmark`
+- **Run Benchmark:**
+  ```bash
+  git clone --branch v0.1.0 https://github.com/smaos-ai/aeib.git aeib
+  cd aeib
+  docker compose run --rm benchmark
+  ```
 - **Token Efficiency:** `npx @smaos/context-governor --dry-run`
 - **Enterprise:** Feasibility sprint scope, pricing, turnaround per SOW
 
