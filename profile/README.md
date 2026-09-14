@@ -1,78 +1,69 @@
-# 🛡️ SMAOS — Sovereign Multi-Agent Governance Suite
+# SMAOS — Sovereign Multi-Agent Governance Suite
 
-> **Deterministic Truth by Design: Local-first execution, invariant testing, and cryptographic verification for autonomous AI agents.**
+Deterministic evidence by design: local-first execution, invariant testing,
+and cryptographic verification for autonomous AI agents.
 
-State integrity, safety, and human agency must never be left to probabilistic guessing. SMAOS provides the execution, diagnostic, and attestation substrate required to deploy autonomous agents in regulated, mission-critical environments.
+SMAOS provides diagnostic and attestation tooling for teams evaluating
+autonomous agents in regulated and mission-critical environments.
 
----
+## Governance Manifesto
 
-### 📜 The SMAOS Governance Manifesto
+**CRITICAL INVARIANT: Capability ≠ Authority**  
+The default governance boundary: agents draft, calculate, and simulate;
+humans authorize consequential actions.
 
-```text
-                                CRITICAL INVARIANT:
-                         Capability ≠ Authority
-                                   │
-                                   ├── Agent  = Drafts, Calculates, Simulates (Hands)
-                                   └── Human  = Authorizes, Decides, Governs (Soul)
+**REFERENCE CONTAINER NETWORK STATEMENT:**  
+The AEIB reference container is configured with `network_mode: none` and
+does not require cloud services. For the reference container, privacy
+controls include network isolation and locally verifiable execution evidence.
 
-                             THE ZERO-EGRESS LAW:
-           Privacy is not a promise — it is 0-byte network egress 
-                  proven by air-gapped cryptographic Merkle DAGs.
+**COMPACTION AWARENESS:**  
+Type-aware memory handling aims to preserve human constraints verbatim,
+helping reduce the risk of the Compaction Cliff silently degrading safety rules.
 
-                        THE COMPACTION IMMUNITY PRINCIPLE:
-        Type-aware memory locks human constraints verbatim, preventing 
-          the Compaction Cliff from silently degrading safety rules.
+**STEWARDSHIP:**  
+Technology built to expand human creative agency.
 
-                             SACRED STEWARDSHIP:
-          Technology built to expand human creative agency, not to extract
-                human value into centralized cloud monopolies.
+## The Open-Source Agent Lifecycle
+
+```
+INPUT: Context & Token Hygiene
+└── context-governor → Measures and helps reduce context bloat, optimizes prompt-cache hit rate
+
+EXECUTION: Invariant & Uncertainty Diagnostic
+└── aeib → Tests fail-closed precedence and UNKNOWN-state handling
+
+ATTESTATION: Cryptographic Action Receipts
+└── star-protocol → Generates locally-signed AST Merkle DAG action capsules (see limits below)
 ```
 
----
-
-### 🔄 The Open-Source Agent Lifecycle
-
-Our open-source core governs the three critical transition boundaries of autonomous agent execution:
-
-```text
-  INPUT (Context & Token Hygiene)
-  └── context-governor ──► Optimizes prompt-cache hit rate & prevents context bloat
-        │
-        ▼
-  EXECUTION (Action Uncertainty Diagnostic)
-  └── aeib ──────────────► Tests fail-closed precedence & UNKNOWN-state handling
-        │
-        ▼
-  ATTESTATION (Cryptographic Action Receipts)
-  └── star-protocol ─────► Generates Ed25519-signed AST Merkle DAG action capsules
-```
-
----
-
-### 📦 Core Repositories & Quickstart
+## Core Repositories & Quickstart
 
 | Stage | Repository | Function | Quickstart |
-| :---: | :--- | :--- | :--- |
-| **Input** | [`context-governor`](https://github.com/smaos-ai/context-governor) | Prompt-cache hit rate & token economics | `npx @smaos/context-governor --dry-run` |
-| **Execution** | [`aeib`](https://github.com/smaos-ai/aeib) | Reference benchmark for action uncertainty — Tests fail-closed precedence and UNKNOWN-state handling | `docker compose run --rm benchmark` |
-| **Attestation** | [`star-protocol`](https://github.com/smaos-ai/star-protocol) | Local AST Merkle DAG receipt generator | `npx @smaos/star verify` |
+| :--- | :--- | :--- | :--- |
+| Input | [context-governor](https://github.com/smaos-ai/context-governor) | Prompt-cache hit rate & token economics — Measures and helps reduce context bloat | `npx @smaos/context-governor --dry-run` |
+| Execution | [aeib](https://github.com/smaos-ai/aeib) | Reference benchmark — Tests fail-closed precedence and UNKNOWN-state handling | `docker compose run --rm benchmark` |
+| Attestation | [star-protocol](https://github.com/smaos-ai/star-protocol) | Local AST Merkle DAG receipt generator | `npx @smaos/star verify` |
 
-The reference benchmark is configured to run without network access and does not require cloud services. Container execution uses `network_mode: none` and does not transmit prompts or source. This describes the reference configuration, not every possible host, plugin, or developer invocation.
+> The reference benchmark is configured to run without network access and does not require cloud services. Container uses `network_mode: none`.
 
----
+## 3-Tier Hierarchy
 
-### 🏛️ The 3-Tier Governance Hierarchy
+**Tier 1 — Diagnostics:** [context-governor](https://github.com/smaos-ai/context-governor), [aeib](https://github.com/smaos-ai/aeib) (10 deterministic scenarios — see fixture list), memory-benchmark (v0.2.0 Sprint)
 
-SMAOS separates lightweight developer tooling from high-assurance enterprise compliance:
+**Tier 2 — Verification:** [star-protocol](https://github.com/smaos-ai/star-protocol), smaos-verify (WASM verifier), ghost-audit (local sandbox scanner)
 
-- **Tier 1 (Diagnostics)**: [`context-governor`](https://github.com/smaos-ai/context-governor), [`aeib`](https://github.com/smaos-ai/aeib) (10 deterministic scenarios), `memory-benchmark` *(v0.2.0 Sprint)*
-- **Tier 2 (Verification)**: [`star-protocol`](https://github.com/smaos-ai/star-protocol), `smaos-verify` *(zero-egress WASM)*, `ghost-audit` *(local sandbox scanner)*
-- **Tier 3 (Enterprise)**: `SMAOS Core` — DORA Article 28/30, EU AI Act Art. 12/14 compliance, and bitemporal `agentacct.db` ledger *(Commercial SOW)*
+**Tier 3 — Enterprise:** SMAOS Core — evidence and tabletop tooling relevant to DORA Articles 28/30 and EU AI Act Articles 12/14; commercial SOW, not a compliance certification. Includes bitemporal agentacct.db ledger.
 
----
+**What is signed:** JCS canonical SHA-256 of receipt (action_id, payload_digest, disposition, observed_at), Merkle root in manifest.json  
+**Key supply:** Local Ed25519 keypair, stored locally, never transmitted  
+**Authenticates:** Integrity of local receipt file  
+**Does NOT prove:** External ledger settled, source data complete, DORA compliance, or production security  
 
-### 🤝 Engagement & Verification
+## Engagement & Verification
 
-- **Run the Benchmark**: Clone and reproduce [`aeib`](https://github.com/smaos-ai/aeib) offline via `docker compose run --rm benchmark`.
-- **Token Efficiency**: Measure your local cache efficiency with [`context-governor`](https://github.com/smaos-ai/context-governor).
-- **Enterprise Verification**: For air-gapped forensic reviews and DORA Article 28/30 compliance tabletop kits, open a discussion or inquiry.
+- **Run Benchmark:** `git clone --branch v0.1.0 https://github.com/smaos-ai/aeib.git && docker compose run --rm benchmark`
+- **Token Efficiency:** `npx @smaos/context-governor --dry-run`
+- **Enterprise:** Feasibility sprint scope, pricing, turnaround per SOW
+
+**Bottom line:** SMAOS provides local diagnostic evidence and cryptographic receipt tooling; it does not claim to establish external-system truth, guarantee privacy across every host, or certify regulatory compliance.
