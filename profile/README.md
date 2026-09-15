@@ -1,8 +1,8 @@
-# SMAOS — Sovereign Multi-Agent Governance Suite
+# SMAOS — Agent Evidence Integrity for Consequential AI Workflows
 
-Deterministic evidence by design: local-first execution, invariant testing, and cryptographic verification for autonomous AI agents.
+> **Open benchmarks and evidence protocols for verifying AI-agent actions and external effects.**
 
-SMAOS provides diagnostic, evidence-reconciliation, and attestation tooling for engineering and risk teams evaluating autonomous agents in regulated and mission-critical environments.
+SMAOS tests whether AI-agent workflows preserve uncertainty, distinguish attempted actions from confirmed effects, and produce independently verifiable evidence for consequential and regulated deployments.
 
 ## Governance Boundary
 
@@ -56,7 +56,7 @@ ATTESTATION: Cryptographic Action Receipts
   docker compose run --rm benchmark
   ```
 * **Token Efficiency**: `npx @smaos/context-governor --dry-run`
-* **Enterprise**: Feasibility sprint scope, pricing, turnaround per SOW (€750 Workflow Evidence Gap Report).
+* **Enterprise**: Feasibility sprint scope, pricing, turnaround per SOW (€750 Workflow Evidence Gap Review).
 
 ---
 
