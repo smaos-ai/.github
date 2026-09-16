@@ -1,63 +1,86 @@
-# SMAOS — Sovereign Multi-Agent Governance Suite
+# SMAOS
 
-Deterministic evidence by design: local-first execution, invariant testing, and cryptographic verification for autonomous AI agents.
+## Agent Evidence Integrity for Consequential AI Workflows
 
-SMAOS provides diagnostic, evidence-reconciliation, and attestation tooling for engineering and risk teams evaluating autonomous agents in regulated and mission-critical environments.
+SMAOS develops open benchmarks and evidence protocols for evaluating whether
+AI-agent workflows distinguish attempted actions from confirmed external effects.
 
-## Governance Boundary
+## Governance boundary
 
-**Capability ≠ Authority**  
-Agents draft, calculate, and simulate; humans authorize consequential actions.
+### Capability is not authority
 
-## AEIB Reference-Container Statement
+Agents may draft, calculate, and simulate. Human operators remain responsible
+for authorizing consequential actions within the applicable workflow controls.
 
-The AEIB reference container uses `network_mode: none` and requires no prompts,
-source code, credentials, or cloud services. This describes the reference
-configuration, not every possible host, plugin, or invocation.
+## AEIB reference container
 
-## The Open-Source Agent Lifecycle
+AEIB v0.1.0 is an offline benchmark over synthetic JSONL scenarios. The
+reference container uses `network_mode: "none"` and requires no prompts,
+source code, credentials, or cloud services.
 
+This describes the reference configuration only. It does not establish the
+security or privacy properties of every host, plugin, runtime, or invocation.
+
+## AEIB
+
+AEIB tests:
+
+- disposition precedence;
+- preservation of `UNKNOWN` outcomes;
+- handling of refusal and conflicting evidence;
+- missing and invalid evidence;
+- deterministic offline execution.
+
+The six dispositions are:
+
+```text
+INVALID_INPUT
+MISSING_EVIDENCE
+CONFLICT
+REFUSED
+CONFIRMED
+UNKNOWN
 ```
-INPUT: Context & Token Hygiene
-└── context-governor → Measures and helps reduce context bloat, optimizes prompt-cache hit rate
 
-EXECUTION: Invariant & Uncertainty Diagnostic
-└── aeib → Tests fail-closed precedence and UNKNOWN-state handling
+Run the benchmark:
 
-ATTESTATION: Cryptographic Action Receipts
-└── star-protocol → Generates locally signed Merkle-DAG receipts for specified local artifact sets; see repository documentation for exact verification procedures and limits.
+```bash
+git clone --branch v0.1.0 https://github.com/smaos-ai/aeib.git aeib
+cd aeib
+docker compose run --rm benchmark
 ```
 
-## Core Repositories & Quickstart
+See `SPEC.md`, `LIMITATIONS.md`, and
+`PUBLIC_REPRODUCTION_REPORT.md` for the frozen contract, limitations, and
+reported reproduction procedure.
 
-| Stage | Repository | Function | Quickstart |
-| :--- | :--- | :--- | :--- |
-| Input | [context-governor](https://github.com/smaos-ai/context-governor) | Prompt-cache hit rate & token economics — Measures and helps reduce context bloat | `npx @smaos/context-governor --dry-run` |
-| Execution | [aeib](https://github.com/smaos-ai/aeib) | Reference benchmark — Tests fail-closed precedence and UNKNOWN-state handling | `docker compose run --rm benchmark` |
-| Attestation | [star-protocol](https://github.com/smaos-ai/star-protocol) | Generates locally signed Merkle-DAG receipts for specified local artifact sets; see repository documentation for exact verification procedures and limits. | `npx @smaos/star verify` |
+## Attestation scope
 
-## 3-Tier Product Hierarchy
+Separate SMAOS tooling may generate signed receipts for declared local
+artifact sets. Such receipts authenticate the represented artifacts relative
+to a signing key. They do not independently establish external-system truth,
+source completeness, authority, or regulatory compliance.
 
-* **Tier 1 — Diagnostics**: [context-governor](https://github.com/smaos-ai/context-governor), [aeib](https://github.com/smaos-ai/aeib) (10 deterministic scenarios), memory-benchmark
-* **Tier 2 — Verification**: [star-protocol](https://github.com/smaos-ai/star-protocol), smaos-verify (WASM verifier), ghost-audit (local sandbox scanner)
-* **Tier 3 — Enterprise**: SMAOS Core — evidence and tabletop tooling that may support work relevant to DORA Articles 28–30 and EU AI Act Articles 12 and 14; commercial SOW, not a compliance certification or legal opinion. Planned or commercial component: bitemporal agentacct.db ledger.
+## Related work
 
-## Attestation & Signing Scope
+AEIB is the only component required to run this repository. Other SMAOS
+components and commercial services are separate projects and are not required
+for AEIB execution. Commercial evaluation services, if available, are scoped separately from this repository.
 
-* **Attestation Scope**: What is signed and the exact receipt format are documented in the `star-protocol` repository. Receipts authenticate local artifact package integrity relative to the signing key and do not independently establish external-system truth, completeness, or authority.
-* **Key supply**: A locally generated Ed25519 keypair is stored locally and is not transmitted by the reference tool.
+## Regulatory scope
 
-## Engagement & Verification
+This repository does not assess applicability of DORA or the EU AI Act,
+determine compliance, classify incidents, or provide legal advice. References
+to logging, human oversight, or ICT third-party risk are contextual only.
 
-* **Run Benchmark**:
-  ```bash
-  git clone --branch v0.1.0 https://github.com/smaos-ai/aeib.git aeib
-  cd aeib
-  docker compose run --rm benchmark
-  ```
-* **Token Efficiency**: `npx @smaos/context-governor --dry-run`
-* **Enterprise**: Feasibility sprint scope, pricing, turnaround per SOW (€750 Workflow Evidence Gap Report).
+## Limitations
 
----
+SMAOS and AEIB do not claim to:
 
-**Bottom line:** SMAOS provides local diagnostic evidence and cryptographic receipt tooling; it does not claim to establish external-system truth, guarantee privacy across every host, or certify regulatory compliance.
+- prove production security;
+- guarantee privacy across every host or integration;
+- establish external-system or ledger truth;
+- replace a GRC or incident-management system;
+- certify DORA or EU AI Act compliance;
+- provide a legal opinion;
+- guarantee safe behavior for all agent architectures.
