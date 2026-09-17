@@ -1,86 +1,29 @@
-# SMAOS
+# smaos-ai — Sovereign Multi-Agent OS & Trust Infrastructure
 
-## Agent Evidence Integrity for Consequential AI Workflows
+Sovereign, local-first, zero-dependency trust and governance infrastructure for autonomous AI agents.
 
-SMAOS develops open benchmarks and evidence protocols for evaluating whether
-AI-agent workflows distinguish attempted actions from confirmed external effects.
+## 🏛️ Core Public Repositories
 
-## Governance boundary
+### ⚡ [aeib-receipt-fuzzer](https://github.com/smaos-ai/aeib-receipt-fuzzer) *(v0.2.0)*
+**Wire-Level Fault Proxy, Toxic Receipt Detector & Offline Audit Log Scanner.**
+- **The Problem**: Most agent frameworks sign `CONFIRMED` receipts on HTTP 504 timeouts or dropped sockets, creating toxic receipts and retry hazards.
+- **The Solution**: Intercepts tool traffic with 6 wire-fault injection modes (504 timeout, TCP RST drop, JCS tamper) and enforces strict `verdict: UNKNOWN` state preservation.
+- **Includes**: `fuzzer.py`, `toxic_receipt_detector.py`, `diff.py` offline scanner, `demo_killshot.py` (18pt terminal presentation), and 10 open conformance test vectors.
 
-### Capability is not authority
+### 🧪 [aeib](https://github.com/smaos-ai/aeib) *(v0.1.0)*
+**Agent-Effect Integrity Benchmark.** Reference runner and deterministic scenario fixtures for evaluating agent state machine resilience under non-deterministic tool outputs.
 
-Agents may draft, calculate, and simulate. Human operators remain responsible
-for authorizing consequential actions within the applicable workflow controls.
+### 📜 [star-protocol](https://github.com/smaos-ai/star-protocol)
+**Story-Trace-Assert-Receipt (STAR) Protocol.** Local zero-cost agent verification CLI and AST Merkle DAG receipt generator for auditable AI execution.
 
-## AEIB reference container
+### 🛡️ [context-governor](https://github.com/smaos-ai/context-governor)
+**Token Budget & Context Economic Governance Engine.** Context compaction and budget enforcement harness for agentic context windows.
 
-AEIB v0.1.0 is an offline benchmark over synthetic JSONL scenarios. The
-reference container uses `network_mode: "none"` and requires no prompts,
-source code, credentials, or cloud services.
+---
 
-This describes the reference configuration only. It does not establish the
-security or privacy properties of every host, plugin, runtime, or invocation.
+## 💼 Staging Forensic Audit Offer
+We deliver bounded audits for payment, engineering, and platform teams operating mutating AI workflows:
+- **Tier 1 Diagnostic (€1,500 / 48-Hour Sprint)**: Scan 250+ staging traces, compute Toxic Receipt Index (TRI %), and map retry hazards.
+- **Tier 2 Forensic Audit (€2,500 / 5-Day Sprint)**: Full wire-level fault injection, 30-day trace analysis, and delivery of a `git apply fix.patch` remediation.
 
-## AEIB
-
-AEIB tests:
-
-- disposition precedence;
-- preservation of `UNKNOWN` outcomes;
-- handling of refusal and conflicting evidence;
-- missing and invalid evidence;
-- deterministic offline execution.
-
-The six dispositions are:
-
-```text
-INVALID_INPUT
-MISSING_EVIDENCE
-CONFLICT
-REFUSED
-CONFIRMED
-UNKNOWN
-```
-
-Run the benchmark:
-
-```bash
-git clone --branch v0.1.0 https://github.com/smaos-ai/aeib.git aeib
-cd aeib
-docker compose run --rm benchmark
-```
-
-See `SPEC.md`, `LIMITATIONS.md`, and
-`PUBLIC_REPRODUCTION_REPORT.md` for the frozen contract, limitations, and
-reported reproduction procedure.
-
-## Attestation scope
-
-Separate SMAOS tooling may generate signed receipts for declared local
-artifact sets. Such receipts authenticate the represented artifacts relative
-to a signing key. They do not independently establish external-system truth,
-source completeness, authority, or regulatory compliance.
-
-## Related work
-
-AEIB is the only component required to run this repository. Other SMAOS
-components and commercial services are separate projects and are not required
-for AEIB execution. Commercial evaluation services, if available, are scoped separately from this repository.
-
-## Regulatory scope
-
-This repository does not assess applicability of DORA or the EU AI Act,
-determine compliance, classify incidents, or provide legal advice. References
-to logging, human oversight, or ICT third-party risk are contextual only.
-
-## Limitations
-
-SMAOS and AEIB do not claim to:
-
-- prove production security;
-- guarantee privacy across every host or integration;
-- establish external-system or ledger truth;
-- replace a GRC or incident-management system;
-- certify DORA or EU AI Act compliance;
-- provide a legal opinion;
-- guarantee safe behavior for all agent architectures.
+📩 **Contact**: `andrejlo123@gmail.com`
