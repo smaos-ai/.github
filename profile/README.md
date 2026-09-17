@@ -1,6 +1,8 @@
 # smaos-ai — Sovereign Multi-Agent OS & Trust Infrastructure
 Sovereign, local-first, zero-dependency trust and governance infrastructure for autonomous AI agents.
 
+> ### *"Every agent harness logs success. Almost none of them test whether the success was justified by the evidence at the wire."*
+
 ## 🏛️ Core Public Repositories
 
 ### ⚡ [aeib-receipt-fuzzer](https://github.com/smaos-ai/aeib-receipt-fuzzer) *(v0.2.0)*
