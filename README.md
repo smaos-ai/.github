@@ -5,12 +5,19 @@ Sovereign, local-first, zero-dependency trust and governance infrastructure for 
 
 ## 🏛️ Core Public Repositories
 
+### 🔍 [smaos-audit](https://github.com/smaos-ai/smaos-audit) *(v0.1.0)*
+**Zero-Egress Wire-Fault & Bitemporal Reconciliation Engine.**
+- **Target Audience**: **CISOs, Enterprise Platform Leads, Lead Auditors (DORA Art. 17/28 & ISO 42001)**
+- **The Problem**: Pre-execution frameworks authorization is blind to runtime 504 drops, causing silent double-spends and un-audited ledger drift.
+- **The Solution**: Air-gapped container (`--network none`) enforcing *Evidence Absent ⟹ UNKNOWN* and auto-generating board-ready Mermaid sequence traces.
+- **Quantified Benefit**: **0 Bytes Data Egress** | **100% Deterministic Evidence**.
+
 ### ⚡ [aeib-receipt-fuzzer](https://github.com/smaos-ai/aeib-receipt-fuzzer) *(v0.2.0)*
 **Wire-Level Fault Proxy, Toxic Receipt Detector & Offline Log Scanner.**
 - **Target Audience**: **Backend & Platform Leads, Payment Engineers, AI Infrastructure Teams**
 - **The Problem**: ~45% of agent SDKs log false `CONFIRMED` receipts on HTTP 504 timeouts, causing silent ledger drift and double-execution retry storms.
 - **The Solution**: Injects 6 wire-fault modes (504 timeout, TCP RST, JCS tamper) and enforces strict `verdict: UNKNOWN` state preservation.
-- **Quantified Benefit**: **100% Preserved Uncertainty (\(\Delta=0\) Toxic Receipts)** | **0 Silent Ledger Errors**.
+- **Quantified Benefit**: **100% Preserved Uncertainty (Δ = 0 Toxic Receipts)** | **0 Silent Ledger Errors**.
 
 ### 🧪 [aeib](https://github.com/smaos-ai/aeib) *(v0.1.0)*
 **Agent-Effect Integrity Benchmark.**
